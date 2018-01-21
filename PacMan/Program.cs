@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace PacMan
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Game.Start();
+            //Call the start method in the controller
+            PacManController.Start();
         }
     }
 }
