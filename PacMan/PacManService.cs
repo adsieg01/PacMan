@@ -32,19 +32,9 @@ namespace PacMan
         public int AddLives()
         {
             int livesGained = 0;
-
             int livesLeft = 3;
-            if (pacMan.Points > 30000)
-            {
-                livesLeft += 1;
-                livesGained += 1;
-            }
-            if (pacMan.Points > 20000)
-            {
-                livesLeft += 1;
-                livesGained += 1;
-            }
-            if (pacMan.Points > 10000)
+
+            for (int i = pacMan.Points; i >= 10000; i-=10000)
             {
                 livesLeft += 1;
                 livesGained += 1;
@@ -112,22 +102,21 @@ namespace PacMan
                         break;
                 }
 
-                
+   
+            }
 
-                int EatVulnerableGhost()
+            int EatVulnerableGhost()
+            {
+                var ghostPointValue = 200;
+
+                for (int i = 0; i < pacMan.VulnerableGhostsEaten; i++)
                 {
-                    var ghostPointValue = 200;
-
-                    for (int i = 0; i < pacMan.VulnerableGhostsEaten; i++)
-                    {
-                        ghostPointValue *= 2;
-                    }
-
-                    return ghostPointValue;
+                    ghostPointValue *= 2;
                 }
 
+                return ghostPointValue;
             }
-               return pacMan.Points = score;
+            return pacMan.Points = score;
             
         }
 
@@ -135,7 +124,7 @@ namespace PacMan
         //Prints out game outcome to console 
         public void CheckCurrentItem()
         {
-            if (pacMan.Lives < 0)
+            if (pacMan.Lives <= 0)
             {
                 Console.WriteLine("Game Over!" + pacMan.Points + pacMan.Lives );
                 Console.ReadLine();
